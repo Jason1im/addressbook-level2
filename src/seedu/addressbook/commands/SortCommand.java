@@ -15,7 +15,7 @@ public class SortCommand extends Command{
             + "Example: " + COMMAND_WORD;
 
     /**
-     * returns a list of all persons in the address book in sorted order.
+     * Returns a list of all persons in the address book in sorted order.
      */
     public List<ReadOnlyPerson> sort( List<ReadOnlyPerson> personList) {
         List<ReadOnlyPerson> newList = new ArrayList<ReadOnlyPerson>();
@@ -25,6 +25,9 @@ public class SortCommand extends Command{
         return divide(newList);
     }
 
+    /**
+     * Implementation of merge sort
+     */
     public List<ReadOnlyPerson> divide(List<ReadOnlyPerson> resultList) {
         if (resultList.size() < 2){
             return resultList;
@@ -40,6 +43,9 @@ public class SortCommand extends Command{
         return resultList;
     }
 
+    /**
+     * Merge function of merge sort
+     */
     public void merge( List<ReadOnlyPerson> left, List<ReadOnlyPerson> right, List<ReadOnlyPerson> result) {
         int leftIndex = 0;
         int rightIndex = 0;
