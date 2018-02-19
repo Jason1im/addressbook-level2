@@ -22,6 +22,7 @@ import seedu.addressbook.commands.IncorrectCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.commands.SortCommand;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
@@ -64,7 +65,7 @@ public class Parser {
      * @param userInput full user input string
      * @return the command based on the user input
      */
-    public Command parseCommand(String userInput) {
+    public static Command parseCommand(Parser parser, String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -76,28 +77,31 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            return parser.prepareAdd(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            return parser.prepareDelete(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            return parser.prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case ViewCommand.COMMAND_WORD:
-            return prepareView(arguments);
+            return parser.prepareView(arguments);
 
         case ViewAllCommand.COMMAND_WORD:
-            return prepareViewAll(arguments);
+            return parser.prepareViewAll(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         case HelpCommand.COMMAND_WORD: // Fallthrough
         default:
