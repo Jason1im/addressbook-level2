@@ -1,7 +1,5 @@
 package seedu.addressbook.data.tag;
 
-import com.sun.corba.se.spi.ior.TaggedComponentFactoryFinder;
-import javafx.util.Pair;
 import java.util.ArrayList;
 
 import seedu.addressbook.data.person.Person;
